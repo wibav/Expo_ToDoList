@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 0.50.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "production": {
+      "node": "20.9.0"
+    },
+    "buildLocal": {
+      "env": {
+        "ANDROID_HOME": "/Users/desh/Library/Android/sdk",
+        "JAVA_HOME": "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
+      },
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

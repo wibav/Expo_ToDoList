@@ -1,97 +1,402 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Task Manager - React Native App
 
-# Getting Started
+A modern, feature-rich task management application built with React Native and Expo, featuring native date/time pickers, SQLite database, and a beautiful Material Design interface.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 🇬🇧 English
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 📱 Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **Task Management**: Create, edit, delete, and toggle task completion
+- **Native Date/Time Pickers**: Integrated iOS and Android date/time selection
+- **SQLite Database**: Local storage with full CRUD operations
+- **Material Design**: Clean, modern UI using React Native Paper
+- **Navigation**: Drawer and Stack navigation with React Navigation
+- **Responsive Design**: Optimized for both iOS and Android
+- **Multiple Entry Points**: Both modal (ActionSheet) and screen-based task creation/editing
 
-```sh
-# Using npm
-npm start
+### 🏗️ Architecture
 
-# OR using Yarn
-yarn start
+- **Frontend**: React Native with Expo
+- **Database**: SQLite (expo-sqlite)
+- **State Management**: React Context API with useReducer
+- **Navigation**: React Navigation v6 (Drawer + Stack)
+- **UI Components**: React Native Paper (Material Design)
+- **Date/Time**: @react-native-community/datetimepicker
+
+### 🛠️ Tech Stack
+
+```json
+{
+  "framework": "React Native + Expo",
+  "database": "SQLite",
+  "navigation": "React Navigation v6",
+  "ui": "React Native Paper",
+  "state": "Context API + useReducer",
+  "date": "Native DateTimePicker",
+  "gestures": "React Native Gesture Handler",
+  "gradients": "Expo Linear Gradient"
+}
 ```
 
-## Step 2: Build and run your app
+### 📦 Installation
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+1. **Clone the repository**
 
-### Android
+```bash
+git clone <repository-url>
+cd RN_ToDoList
+```
 
-```sh
-# Using npm
-npm run android
+2. **Install dependencies**
 
-# OR using Yarn
+```bash
+yarn install
+# or
+npm install
+```
+
+3. **Start the development server**
+
+```bash
+yarn start
+# or
+npm start
+```
+
+4. **Run on device/simulator**
+
+```bash
+# iOS
+yarn ios
+
+# Android
 yarn android
 ```
 
-### iOS
+### 🗄️ Database Schema
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```sql
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    date TEXT,
+    time TEXT,
+    completed INTEGER DEFAULT 0,
+    created_at TEXT,
+    updated_at TEXT
+);
 ```
 
-Then, and every time you update your native dependencies, run:
+### 📁 Project Structure
 
-```sh
-bundle exec pod install
+```
+src/
+├── components/           # Reusable UI components
+│   ├── DrawerMenu.js    # Navigation drawer
+│   ├── Header.js        # App header
+│   ├── TaskActionSheet.js # Modal for task creation/editing
+│   └── TaskItem.js      # Individual task component
+├── context/             # State management
+│   └── TaskContext.js   # Global task state and database operations
+├── navigations/         # Navigation configuration
+│   └── AppNavigator.js  # Main navigation setup
+├── screens/            # Application screens
+│   ├── TaskListScreen.js # Main task list view
+│   ├── TaskAddScreen.js  # Add task form
+│   ├── TaskEditScreen.js # Edit task form
+│   └── SettingScreen.js  # Settings page
+└── AppStyles.js        # Global styles and theme
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### 🔧 Key Components
 
-```sh
-# Using npm
-npm run ios
+#### TaskContext.js
 
-# OR using Yarn
+- Database initialization and management
+- CRUD operations for tasks
+- Global state management with Context API
+
+#### TaskListScreen.js
+
+- Main interface with task list
+- FAB button for quick task creation
+- Integration with ActionSheet modal
+
+#### TaskActionSheet.js
+
+- Modal component for task creation/editing
+- Native date/time picker integration
+- Form validation and data handling
+
+#### TaskAddScreen.js / TaskEditScreen.js
+
+- Full-screen forms for detailed task management
+- Consistent UI with ActionSheet component
+- Native date/time picker support
+
+### 🚀 Usage Examples
+
+#### Creating a Task
+
+```javascript
+const taskData = {
+  title: 'Complete project',
+  description: 'Finish the React Native app',
+  date: '2025-01-15',
+  time: '14:30',
+};
+
+await addTask(
+  taskData.title,
+  taskData.description,
+  taskData.date,
+  taskData.time,
+);
+```
+
+#### Updating a Task
+
+```javascript
+const updates = {
+  title: 'Updated title',
+  description: 'Updated description',
+  completed: 1,
+};
+
+await updateTask(taskId, updates);
+```
+
+### 📱 Screenshots
+
+The app features:
+
+- Clean task list with Material Design cards
+- Native date/time pickers for iOS and Android
+- Smooth drawer navigation
+- ActionSheet modal for quick actions
+- Dark/light theme support through React Native Paper
+
+### 🧪 Testing
+
+Run ESLint to check code quality:
+
+```bash
+yarn lint
+```
+
+### 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🇧🇷 Português
+
+### 📱 Funcionalidades
+
+- **Gerenciamento de Tarefas**: Criar, editar, excluir e alternar conclusão de tarefas
+- **Seletores Nativos de Data/Hora**: Seleção integrada de data/hora para iOS e Android
+- **Banco SQLite**: Armazenamento local com operações CRUD completas
+- **Material Design**: Interface limpa e moderna usando React Native Paper
+- **Navegação**: Navegação por drawer e stack com React Navigation
+- **Design Responsivo**: Otimizado para iOS e Android
+- **Múltiplos Pontos de Entrada**: Criação/edição de tarefas via modal (ActionSheet) e telas dedicadas
+
+### 🏗️ Arquitetura
+
+- **Frontend**: React Native com Expo
+- **Banco de Dados**: SQLite (expo-sqlite)
+- **Gerenciamento de Estado**: Context API do React com useReducer
+- **Navegação**: React Navigation v6 (Drawer + Stack)
+- **Componentes UI**: React Native Paper (Material Design)
+- **Data/Hora**: @react-native-community/datetimepicker
+
+### 🛠️ Stack Tecnológica
+
+```json
+{
+  "framework": "React Native + Expo",
+  "banco": "SQLite",
+  "navegacao": "React Navigation v6",
+  "ui": "React Native Paper",
+  "estado": "Context API + useReducer",
+  "data": "DateTimePicker Nativo",
+  "gestos": "React Native Gesture Handler",
+  "gradientes": "Expo Linear Gradient"
+}
+```
+
+### 📦 Instalação
+
+1. **Clone o repositório**
+
+```bash
+git clone <url-do-repositorio>
+cd RN_ToDoList
+```
+
+2. **Instale as dependências**
+
+```bash
+yarn install
+# ou
+npm install
+```
+
+3. **Inicie o servidor de desenvolvimento**
+
+```bash
+yarn start
+# ou
+npm start
+```
+
+4. **Execute no dispositivo/simulador**
+
+```bash
+# iOS
 yarn ios
+
+# Android
+yarn android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### 🗄️ Esquema do Banco de Dados
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sql
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    date TEXT,
+    time TEXT,
+    completed INTEGER DEFAULT 0,
+    created_at TEXT,
+    updated_at TEXT
+);
+```
 
-## Step 3: Modify your app
+### 📁 Estrutura do Projeto
 
-Now that you have successfully run the app, let's make changes!
+```
+src/
+├── components/           # Componentes UI reutilizáveis
+│   ├── DrawerMenu.js    # Menu lateral de navegação
+│   ├── Header.js        # Cabeçalho do app
+│   ├── TaskActionSheet.js # Modal para criação/edição de tarefas
+│   └── TaskItem.js      # Componente individual de tarefa
+├── context/             # Gerenciamento de estado
+│   └── TaskContext.js   # Estado global e operações de banco
+├── navigations/         # Configuração de navegação
+│   └── AppNavigator.js  # Configuração principal de navegação
+├── screens/            # Telas da aplicação
+│   ├── TaskListScreen.js # Visualização principal da lista
+│   ├── TaskAddScreen.js  # Formulário de adição de tarefa
+│   ├── TaskEditScreen.js # Formulário de edição de tarefa
+│   └── SettingScreen.js  # Página de configurações
+└── AppStyles.js        # Estilos globais e tema
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### 🔧 Componentes Principais
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+#### TaskContext.js
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- Inicialização e gerenciamento do banco de dados
+- Operações CRUD para tarefas
+- Gerenciamento de estado global com Context API
 
-## Congratulations! :tada:
+#### TaskListScreen.js
 
-You've successfully run and modified your React Native App. :partying_face:
+- Interface principal com lista de tarefas
+- Botão FAB para criação rápida de tarefas
+- Integração com modal ActionSheet
 
-### Now what?
+#### TaskActionSheet.js
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- Componente modal para criação/edição de tarefas
+- Integração com seletores nativos de data/hora
+- Validação de formulário e manipulação de dados
 
-# Troubleshooting
+#### TaskAddScreen.js / TaskEditScreen.js
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- Formulários em tela cheia para gerenciamento detalhado
+- Interface consistente com componente ActionSheet
+- Suporte a seletores nativos de data/hora
 
-# Learn More
+### 🚀 Exemplos de Uso
 
-To learn more about React Native, take a look at the following resources:
+#### Criando uma Tarefa
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```javascript
+const taskData = {
+  title: 'Concluir projeto',
+  description: 'Finalizar o app React Native',
+  date: '2025-01-15',
+  time: '14:30',
+};
+
+await addTask(
+  taskData.title,
+  taskData.description,
+  taskData.date,
+  taskData.time,
+);
+```
+
+#### Atualizando uma Tarefa
+
+```javascript
+const updates = {
+  title: 'Título atualizado',
+  description: 'Descrição atualizada',
+  completed: 1,
+};
+
+await updateTask(taskId, updates);
+```
+
+### 📱 Capturas de Tela
+
+O app apresenta:
+
+- Lista limpa de tarefas com cards Material Design
+- Seletores nativos de data/hora para iOS e Android
+- Navegação suave por drawer
+- Modal ActionSheet para ações rápidas
+- Suporte a temas claro/escuro através do React Native Paper
+
+### 🧪 Teste
+
+Execute o ESLint para verificar a qualidade do código:
+
+```bash
+yarn lint
+```
+
+### 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT.
+
+---
+
+## 🚀 Quick Start
+
+1. Install dependencies: `yarn install`
+2. Start development server: `yarn start`
+3. Run on device: `yarn ios` or `yarn android`
+4. Check code quality: `yarn lint`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+If you have any questions or need help, please open an issue on GitHub.
+
+---
+
+**Built with ❤️ using React Native and Expo**

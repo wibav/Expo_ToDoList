@@ -1,4 +1,5 @@
 {
-  "name": "RN_ToDoList",
-  "displayName": "RN_ToDoList"
+  "plugins": [
+    "expo-sqlite"
+  ]
 }
